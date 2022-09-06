@@ -1,26 +1,47 @@
-import 'package:admin_dashboard/providers/auth_provider.dart';
-import 'package:admin_dashboard/ui/labels/custom_labels.dart';
+import 'package:admin_dashboard/widgets/Background.dart';
+import 'package:admin_dashboard/widgets/card_table.dart';
+import 'package:admin_dashboard/widgets/page_title.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 class DashboardView extends StatelessWidget {
-  const DashboardView({Key? key}) : super(key: key);
 
+
+   
+  const DashboardView({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
-
-    final user = Provider.of<AuthProvider>(context).user!;
-
-    //TODO INICIAR CATEGORIAS 
-
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-      child: ListView(
+    return Scaffold(
+      body: Stack(
         children: [
-          Text('Tienda en Articulos de Cuero',style: CustomLabels.h1),
+         //Background 
+        Background(),
 
+        _HomeBody()
         ],
       ),
+   //   bottomNavigationBar: CustomBottomNavigation(),
+      
+    );
+  }
+}
+//////////////////////////////////////////////////////////
+
+class _HomeBody extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+
+        PageTitle(),
+
+        CardTable(),
+          
+        ],
+      ),
+
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:admin_dashboard/models/http/productos_response.dart';
 import 'package:flutter/material.dart';
-import 'package:admin_dashboard/api/BolsosApi.txt';
+import 'package:admin_dashboard/api/BolsosApi.dart';
 import '../models/producto.dart';
 
 
@@ -81,7 +81,7 @@ Future newProducto( String name ) async {
 
     try {
  //     print(data);
-      final json = await BolsosApi.Post('/categorias', data );
+      final json = await BolsosApi.post('/categorias', data );
       getProductos();
       
     } catch (e) {

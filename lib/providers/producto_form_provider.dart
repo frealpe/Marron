@@ -1,7 +1,7 @@
 
 import 'dart:typed_data';
 
-import 'package:admin_dashboard/api/BolsosApi.txt';
+import 'package:admin_dashboard/api/BolsosApi.dart';
 import 'package:admin_dashboard/models/producto.dart';
 import 'package:flutter/material.dart';
 
@@ -101,7 +101,7 @@ copyProductoWith({
 
     try {
       
-      final resp = await BolsosApi.Post('/productos/', data);    
+      final resp = await BolsosApi.post('/productos/', data);    
       return resp;
 
     } catch (e) {
@@ -122,7 +122,7 @@ copyProductoWith({
     };
 
     try {
-      final json = await BolsosApi.Post('/categorias', data );
+      final json = await BolsosApi.post('/categorias', data );
       notifyListeners();
       
     } catch (e) {

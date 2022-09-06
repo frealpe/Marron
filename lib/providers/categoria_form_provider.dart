@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:admin_dashboard/api/BolsosApi.txt';
+import 'package:admin_dashboard/api/BolsosApi.dart';
 import 'package:admin_dashboard/models/category.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +38,7 @@ late GlobalKey<FormState> formKey;
       'nombre': categoria!.nombre,
     };
     try {
-      final resp = await BolsosApi.Post('/categorias', data );
+      final resp = await BolsosApi.post('/categorias', data );
       return resp;
     } catch (e) {
       throw 'Error al crear categoria';

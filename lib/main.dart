@@ -1,8 +1,9 @@
 
+import 'package:admin_dashboard/providers/login_form_provider.dart';
 import 'package:admin_dashboard/providers/producto_form_provider.dart';
-import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
+import 'package:admin_dashboard/ui/views/dashboard_view.dart';
 import 'package:flutter/material.dart';
-import 'package:admin_dashboard/api/BolsosApi.txt';
+import 'package:admin_dashboard/api/BolsosApi.dart';
 import 'package:admin_dashboard/providers/providers.dart';
 import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:admin_dashboard/ui/layouts/splash/splash_layout.dart';
@@ -32,6 +33,12 @@ class AppState extends StatelessWidget {
           lazy:false,
           create: (_)=> AuthProvider()
           ),
+
+        ChangeNotifierProvider(
+          lazy:false,
+          create: (_)=> LoginFormProvider()
+          ),
+
 
         ChangeNotifierProvider(
           lazy:false,
@@ -94,7 +101,7 @@ class MyApp extends StatelessWidget {
       return SplashLayout();
 
       if(authProvider.authStatus == AuthStatus.authenticated){
-      return DashboardLayout(child: child!);
+      return DashboardView();   //Puede venir el child
       }else{
       return AuthLayout(child:child!);}
       },

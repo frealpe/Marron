@@ -1,5 +1,5 @@
 
-import 'package:admin_dashboard/api/BolsosApi.txt';
+import 'package:admin_dashboard/api/BolsosApi.dart';
 import 'package:admin_dashboard/models/http/users_response.dart';
 import 'package:admin_dashboard/models/usuario.dart';
 import 'package:flutter/cupertino.dart';

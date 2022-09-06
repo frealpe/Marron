@@ -4,33 +4,64 @@ import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
 import 'package:admin_dashboard/ui/buttons/link_text.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
+import 'package:admin_dashboard/ui/shared/widges/auth_background.dart';
+import 'package:admin_dashboard/ui/shared/widges/card_container.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RegisterView extends StatelessWidget {
 
-  const RegisterView({Key? key}) : super(key: key);
+ @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: AuthBackground(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+
+              SizedBox( height: 350 ),
+
+              CardContainer(
+                child: Column(
+                  children: [
+                    SizedBox( height: 20 ),
+                    Text('Login', style: Theme.of(context).textTheme.headline4 ),
+                    SizedBox( height: 30 ),   
+
+                    ChangeNotifierProvider(
+                      create: ( _ ) => RegisterFormProvider(),
+                      child: _RegisterForm(), 
+                    )                                                     
+                  ],
+                )
+              ),
+            ],
+          ),
+        )
+      )
+   );
+  }
+ 
+}
+
+////////////////////////////////////////////////////////
+
+class _RegisterForm extends StatelessWidget {
+  const _RegisterForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
 
-      create: (_) => RegisterFormProvider(),
-      child: Builder(builder: (context) {
-      
-        final registerFormProvider =
-        Provider.of<RegisterFormProvider>(context, listen: false);
-        return Container(
+        final registerFormProvider = Provider.of<RegisterFormProvider>(context, listen: false);
+
+return Container(
           
-          margin: EdgeInsets.only(top: 50),
+          margin: EdgeInsets.only(top: 20),
           //color: Colors.white,
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Center(
             
-            child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 370),
-
             child: Form(
              autovalidateMode: AutovalidateMode.always,  // Valida los campos de manera automática
               key: registerFormProvider.formKey,         //Actualiza la llave
@@ -113,9 +144,29 @@ class RegisterView extends StatelessWidget {
                 ],
               ),
             ),
-          )),
+
+          ),
         );
-      }),
-    );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

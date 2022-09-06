@@ -1,4 +1,4 @@
-import 'package:admin_dashboard/api/BolsosApi.txt';
+import 'package:admin_dashboard/api/BolsosApi.dart';
 import 'package:admin_dashboard/models/category.dart';
 import 'package:admin_dashboard/models/http/categories_response.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +44,7 @@ List <Categoria>categorias = [];
     };
 
     try {
-      final json = await BolsosApi.Post('/categorias', data );
+      final json = await BolsosApi.post('/categorias', data );
       getCategories();
       
     } catch (e) {
