@@ -49,7 +49,6 @@ late GlobalKey<FormState> formKey;
 ///////////////////////////////////////////////////////////
   Future<Categoria> uploadImage(String path, Uint8List bytes) async{
     try {
-      print(path);
       final resp = await BolsosApi.uploadFile(path, bytes);
       categoria = Categoria.fromMap(resp);
    //   getCategories();

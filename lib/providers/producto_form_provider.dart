@@ -135,9 +135,7 @@ copyProductoWith({
   Future<Producto> uploadImage(String path, Uint8List bytes) async{
     try {
       final resp = await BolsosApi.uploadFile(path, bytes);
-      print(resp);
       producto = Producto.fromMap(resp);
-      print(producto);
       notifyListeners();
       return producto!;
     } catch (e) {

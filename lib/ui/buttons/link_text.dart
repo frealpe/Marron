@@ -24,7 +24,6 @@ class _LinkTextState extends State<LinkText> {
   @override
   Widget build(BuildContext context) {
 
-    print(widget.setcolor);  
     return GestureDetector(
       onTap: ()=>{
         if(widget.onPressed != null) widget.onPressed!()

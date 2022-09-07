@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 
 class CategoriesProvider extends ChangeNotifier{
 
-//late GlobalKey<FormState> formKey; 
+late GlobalKey<FormState> formKey; 
 
 List <Categoria>categorias = [];  
 
-  CategoriesProvider(){
+  CategoriesProvider()
+  {
    getCategories();
-}
+  }
 ///////////////////////////////////////////////////////////////////////////
  Future getCategories() async {
 
@@ -94,8 +95,7 @@ List <Categoria>categorias = [];
 /////////////////////SE ACTUALIZA CATEGORIA
 void refreshCategoria(Categoria newCategoria){
 
-  //print(newProducto);
-  
+ 
   categorias = this.categorias.map(
     (categoria) {
         if(categoria.id == newCategoria.id){

@@ -27,10 +27,9 @@ class BolsosApi{
 ///////////////////////////////////////////////////////////////
   static Future httpGet(String path) async{
     try{
-      final resp= await dio.get(path);
+      final resp= await dio.get('$baseUrlu$path');
       return resp.data;
     } on DioError catch(e){
-      print(e.response);
       throw ('Error en el Get');
     }
   }
@@ -39,8 +38,6 @@ class BolsosApi{
 //    final formData = FormData.fromMap(data);
      try{
       final resp= await dio.post('$baseUrlu$path',data: data);
-     // final resp= await dio.post(path,data: data);      
-      print(resp);
       return resp.data;
 
     } on DioError catch(e){
@@ -56,7 +53,6 @@ class BolsosApi{
     final formData = FormData.fromMap(data);
     try{
       final resp= await dio.put('$baseUrlu$path',data: formData);
-      print(resp.data);
       return resp.data;
 
     } on DioError catch(e){

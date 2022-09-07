@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/router/router.dart';
 import 'package:flutter/material.dart';
 
 class SingleCard extends StatelessWidget {
@@ -22,7 +23,7 @@ class SingleCard extends StatelessWidget {
       GestureDetector
       (
         //TODO NAVEGAR A LOS PRODUCTOS
-        onTap: () => Navigator.pushNamed(context,'home'),
+        onTap: () =>  Navigator.pushReplacementNamed(context, Flurorouter.dashboardRoute),
         child: Card(
             
             child: Image(image: AssetImage('assets/${imagen}.jpeg'),          
