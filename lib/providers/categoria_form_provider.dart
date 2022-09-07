@@ -8,6 +8,8 @@ class CategoriaFormProvider extends ChangeNotifier {
 
 Categoria? categoria; 
 
+List <Categoria>categorias = [];  
+
 late GlobalKey<FormState> formKey; 
 
 /////////////////////////////////////////

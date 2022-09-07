@@ -22,7 +22,7 @@ class SingleCard extends StatelessWidget {
       child: 
       GestureDetector
       (
-        //TODO NAVEGAR A LOS PRODUCTOS
+        //TODO NAVEGAR A LOS PRODUCTOS POR ID COMO EN EL ADMINISTRADOR Y SE DEBE PASAR EL ID
         onTap: () =>  Navigator.pushReplacementNamed(context, Flurorouter.dashboardRoute),
         child: Card(
             

@@ -14,22 +14,33 @@ const CategoriesView({Key? key}) : super(key: key);
 
 class _CategoriesViewState extends State<CategoriesView> {
 
-  List <Categoria> categoria = [];
+//  Categoria? categoria;
+
+  List <Categoria> categorias = [];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    final providercategoria = Provider.of<CategoriesProvider>(context,listen: false); 
-    final  categoria = providercategoria.categorias;
-    print(categoria);
-    setState((){categoria;});  
-    //categoria=data;
-  }
 
+
+    final categoriaProvider     = Provider.of<CategoriesProvider>(context,listen: false);
+    final categoriaFromProvider = Provider.of<CategoriaFormProvider>(context,listen: false);
+
+    categoriaProvider.getCategories()
+    .then((categoriasDB){
+    categoriaFromProvider.categorias=categoriasDB;
+    setState((){categorias=categoriasDB;});  
+    print(categorias[0].nombre);
+    });
+
+
+  }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
-    final categoria = Provider.of<CategoriesProvider>(context,listen: false).categorias;
-    print(categoria[1].nombre);
+ duration: Duration(microseconds: 300);
+ print(categorias.length);
+
     return Table(
        children: [
         TableRow(
