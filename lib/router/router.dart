@@ -18,6 +18,7 @@ class Flurorouter{
   //Dashboard
   static String dashboardRoute = 'dashboard';
   //Productos
+  static String productsRoute = 'productos';
 //////////////////////////////////////////////////////////////////////////////////////////////////
   static void configureRoutes(){
     router.define(rootRoute, handler: AdminHandlers.login,transitionType: TransitionType.none);
@@ -26,7 +27,7 @@ class Flurorouter{
   
   //Dashboard  
     router.define(dashboardRoute, handler: DashboardHandlers.dashboard);
-
+    router.define(productsRoute, handler: DashboardHandlers.products);
     router.notFoundHandler= NoPageFoundHandlers.noPageFound;
    
   }
