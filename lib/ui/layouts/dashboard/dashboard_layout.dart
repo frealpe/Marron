@@ -3,15 +3,11 @@ import 'package:flutter/material.dart';
 
 class DashboardLayout extends StatefulWidget {
 
-  //Los latout reciben un widget
-
   final Widget child;
-
   const DashboardLayout({
     Key? key,
     required this.child,
     }) : super(key: key);
-
   @override
   State<DashboardLayout> createState() => _DashboardLayoutState();
 }
@@ -22,14 +18,10 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
   void initState() {
     // TODO: implement initState
     super.initState();
-
     duration: Duration(microseconds: 300);
-
   }
-
   @override
   Widget build(BuildContext context) {
-
     return DashboardView();
 
   }

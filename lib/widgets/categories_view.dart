@@ -10,7 +10,6 @@ class CategoriesView extends StatelessWidget {
   Widget build(BuildContext context) {
     final categoriaProvider     = Provider.of<CategoriesProvider>(context);
     final String title;
-    //final popularProvider = Provider.of<Pop
 
     return Container(
 

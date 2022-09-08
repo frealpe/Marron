@@ -15,7 +15,7 @@ class PageTitle extends StatelessWidget {
         child: Container(
         width: 280,
         height: 190,
-          margin: EdgeInsets.symmetric(vertical: 20,horizontal: 100),
+          margin: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
