@@ -1,25 +1,25 @@
-import 'package:admin_dashboard/models/category.dart';
-import 'package:admin_dashboard/router/router.dart';
-import 'package:admin_dashboard/services/navigation_service.dart';
+import 'package:admin_dashboard/models/producto.dart';
+import 'package:admin_dashboard/ui/views/productos_view.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
 class CardSwiper extends StatelessWidget {
 
-
-  List <Categoria> categorias = [];
+  List <Producto> productos = [];
   CardSwiper({
-    Key? key, required this.categorias
+    Key? key,
+    required this.productos
     }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
       final size = MediaQuery.of(context).size;
 
-      if(categorias.length ==0) {
+      if(productos.length ==0) {
         return Container(
             width: double.infinity,
-            height: size.height*0.5,
+            height: size.height*0.6,
             child: Center(
               child: CircularProgressIndicator(),
               ),
@@ -27,24 +27,28 @@ class CardSwiper extends StatelessWidget {
       }
       return Container(
         width:  double.infinity,
-        height: size.height*0.5,
+        height: size.height*0.45,
+        //: Text('Categorias existentes'),
         child: Swiper(
-          itemCount: categorias.length,
+          itemCount: productos.length,
           layout: SwiperLayout.STACK,
-          itemWidth: size.width*0.6,
-          itemHeight: size.height*0.4,
+          itemWidth: size.width*0.7,
+          itemHeight: size.height*0.5,
           itemBuilder: (_, int index){
-          final categoria = categorias[index];
+          final producto = productos[index];
 
           return GestureDetector(
-              onTap: () => NavigationServer.navigateTo(Flurorouter.productsRoute),
-              //Flurorouter.rootRoute
+              onTap: (){
+               Navigator.push(
+                context,
+              MaterialPageRoute(builder: (context) => ProductsView())); 
+              },
         child: Card(
               child: ClipRRect(
-                borderRadius:BorderRadius.circular(20),
+                borderRadius:BorderRadius.circular(25),
                 child: FadeInImage(                
                   placeholder: AssetImage ('assets/no-image.jpg'),
-                  image: NetworkImage(categoria.img!),                
+                  image: NetworkImage(producto.img!),                
                   fit: BoxFit.cover,
                   ),
               ),
@@ -55,3 +59,10 @@ class CardSwiper extends StatelessWidget {
       );
   }
 }
+
+
+
+/*                     ChangeNotifierProvider(
+                      create: ( _ ) => LoginFormProvider(),
+                      child: _LoginForm(), 
+                    )  */ 

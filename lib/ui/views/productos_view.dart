@@ -1,3 +1,5 @@
+import 'package:admin_dashboard/widgets/Background.dart';
+import 'package:admin_dashboard/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 
 
@@ -7,11 +9,11 @@ class ProductsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
+    return Scaffold(
+       body: Stack(
         children:[
-
-         Text('Marrón Marroquinería',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
+        Background(),
+        PageTitle(),
         ]
       ),
     );

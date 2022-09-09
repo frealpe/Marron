@@ -67,7 +67,7 @@ copyProductoWith({
       'genero': producto!.genero,
       'precio': producto!.precio,
       'cantidad': producto!.cantidad,
-      'categoria': producto!.categoria.id,  //Se debe actualizar el id de la categoria.
+      'categoria': producto!.categoria!.id,  //Se debe actualizar el id de la categoria.
       'descripcion': producto!.descripcion,
       'disponible': producto!.disponible,
     };
@@ -94,7 +94,7 @@ copyProductoWith({
       'genero': producto!.genero,
       'precio': producto!.precio,
       'cantidad': producto!.cantidad,
-      'categoria': producto!.categoria.id,  //Se debe actualizar el id de la categoria.
+      'categoria': producto!.categoria!.id,  //Se debe actualizar el id de la categoria.
       'descripcion': producto!.descripcion,
       'disponible': producto!.disponible,
     };

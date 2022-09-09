@@ -36,7 +36,8 @@ static Handler dashboard =  Handler(
     .setCurrentPageUrl(Flurorouter.dashboardRoute);
 
     if(authProvider.authStatus == AuthStatus.authenticated)
-    return ProductsView();      
+    {print('entre');
+    return ProductsView();      }
     else 
     return DashboardView();
     

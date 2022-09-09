@@ -2,7 +2,6 @@
 import 'package:admin_dashboard/providers/login_form_provider.dart';
 import 'package:admin_dashboard/providers/producto_form_provider.dart';
 import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
-import 'package:admin_dashboard/ui/views/dashboard_view.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/api/BolsosApi.dart';
 import 'package:admin_dashboard/providers/providers.dart';
@@ -19,7 +18,14 @@ void main() async{
   await LocalStorage.configurePrefs();
   BolsosApi.configureDio();
   Flurorouter.configureRoutes();
-  runApp(AppState());
+ // runApp(AppState());
+  runApp(
+    //debugShowCheckedModeBanner: false,
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AppState()
+      )
+    );
 }
 
 class AppState extends StatelessWidget {
@@ -107,6 +113,14 @@ class MyApp extends StatelessWidget {
       }else{
       return AuthLayout(child:child!);}
       },
+        theme: ThemeData.light().copyWith(
+        appBarTheme: AppBarTheme(
+        color:  Color(0xff441c04),
+        )
+      )
     );
+    
+    
   }
+  
 }
