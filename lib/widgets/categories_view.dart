@@ -14,9 +14,15 @@ class CategoriesView extends StatelessWidget {
     return Container(
 
         child: Column(
+
           children: [
-            CardSwiper(productos:productosProvider.productos),
             SizedBox( height: 30 ), 
+            CardSwiper(
+            productos:productosProvider.productos            
+            ),
+////////////////////////////////////////////////////////////
+            SizedBox( height: 30 ), 
+////////////////////////////////////////////////////////////            
             MovieSlider(
             categoria: categoriaProvider.categorias,
             title: 'Categorias de Todos los Productos',

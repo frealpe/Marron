@@ -35,7 +35,7 @@ class _HomeBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-        PageTitle(),
+ //       PageTitle(),
         CategoriesView(),
           
         ],
