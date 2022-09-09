@@ -1,5 +1,6 @@
 import 'package:admin_dashboard/providers/providers.dart';
 import 'package:admin_dashboard/widgets/card_swiper.dart';
+import 'package:admin_dashboard/widgets/movie_slider.dart';
 import 'package:flutter/material.dart';
 class CategoriesView extends StatelessWidget {
   const CategoriesView({Key? key}) : super(key: key);
@@ -15,11 +16,12 @@ class CategoriesView extends StatelessWidget {
         child: Column(
           children: [
             CardSwiper(productos:productosProvider.productos),
-/*             MovieSlider(
-              movies: moviesProvider.popularMovies,
-              title: 'Populares',
-              onNexPage: () => moviesProvider.getPopularMovies(),
-            ), */
+            SizedBox( height: 30 ), 
+            MovieSlider(
+            categoria: categoriaProvider.categorias,
+            title: 'Categorias de Todos los Productos',
+            onNexPage: () => categoriaProvider.getCategories(),
+            ), 
           ],
         ),
       );
