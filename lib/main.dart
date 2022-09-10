@@ -82,6 +82,11 @@ class AppState extends StatelessWidget {
           create: (_)=> CategoriesProvider()
           ),
 
+        ChangeNotifierProvider(
+          lazy:false,
+          create: (_)=> CounterProvider()
+          ),          
+
       ],
       child: MyApp(),
       );

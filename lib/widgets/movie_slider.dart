@@ -1,4 +1,5 @@
 import 'package:admin_dashboard/models/category.dart';
+import 'package:admin_dashboard/ui/views/categoria_view.dart';
 import 'package:flutter/material.dart';
 
 
@@ -77,12 +78,10 @@ class _MovieSliderState extends State<MovieSlider> {
 
 
 class _MovieCategoria extends StatelessWidget {
-
   final Categoria categoria;
-  
+
   const _MovieCategoria(this.categoria);
-  
-  
+    
   @override
     Widget build(BuildContext context) {
       
@@ -94,7 +93,11 @@ class _MovieCategoria extends StatelessWidget {
                       children: [
                         GestureDetector(
                           //TODO HCAER LA NAVEGACION A TODOS LOS PRODUCTOS DE LA CATEGORIA ESCOGIDA
-                          onTap: () => Navigator.pushNamed(context, 'details',arguments: categoria),
+                            onTap: (){                              
+                            Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => CategoriaView(categoria: categoria.id))); 
+                            },
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: FadeInImage(

@@ -1,15 +1,16 @@
+import 'package:admin_dashboard/models/category.dart';
 import 'package:admin_dashboard/widgets/Background.dart';
 import 'package:admin_dashboard/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 
 
 
-class ProductosView extends StatelessWidget {
+class CategoriaView extends StatelessWidget {
 
-  final String productos;
-  ProductosView({
+  final String categoria;
+  CategoriaView({
     Key? key,
-    required this.productos
+    required this.categoria
     }) : super(key: key);
 
   @override

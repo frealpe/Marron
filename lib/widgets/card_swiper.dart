@@ -1,11 +1,13 @@
 import 'package:admin_dashboard/models/producto.dart';
+import 'package:admin_dashboard/providers/providers.dart';
 import 'package:admin_dashboard/ui/views/productos_view.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
+
 class CardSwiper extends StatelessWidget {
 
-  List <Producto> productos = [];
+  List <Producto> productos;
   CardSwiper({
     Key? key,
     required this.productos
@@ -13,8 +15,9 @@ class CardSwiper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-      final size = MediaQuery.of(context).size;
+      
+     final value = Provider.of<CounterProvider>(context,);           
+     final size = MediaQuery.of(context).size;
 
       if(productos.length ==0) {
         return Container(
@@ -26,8 +29,8 @@ class CardSwiper extends StatelessWidget {
         );
       }
       return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 25),
-        
+
+        padding: EdgeInsets.symmetric(horizontal: 25),        
         child: Container(
         margin: EdgeInsets.only(top: 10,bottom: 10),
         width:  double.infinity,      
@@ -41,14 +44,30 @@ class CardSwiper extends StatelessWidget {
             Positioned(
               top: 590,
               left: 0,
-              child: _productDetails(size:size),    
+              child: _productDetails(
+                size:size,
+                Referencia:productos[value.counter].nombre,
+                Categoria: productos[value.counter].categoria!.nombre,
+                ),    
               ),          
 
             Positioned(
               top: 0,
               right: 0,
-              child: _PriceTag(size:size)
-              )          
+              child: _PriceTag(
+                size:size,
+                precio: productos[value.counter].precio,
+                )
+              ),      
+            //MOSTRAR DE MANERA CONDICIONAL
+            Positioned(
+              top: 0,
+              left: 0,
+              child: _NotAvalible(
+                size: size,
+                disponible :productos[value.counter].disponible, 
+                )
+              )                   
           ],
         ),
 
@@ -71,12 +90,46 @@ class CardSwiper extends StatelessWidget {
 
   );
 }
+/////////////////////////////////////////////////////////////////////
+class _NotAvalible extends StatelessWidget {
+  final String disponible;
+
+  const _NotAvalible({
+    Key? key,
+    required this.size,
+    required this.disponible,
+  }) : super(key: key);
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+        return Container(
+      child: FittedBox(
+        fit: BoxFit.contain,
+        child: Padding(
+          padding:EdgeInsets.symmetric(horizontal: 10),
+          child: Text(disponible,style: TextStyle(fontSize: 5,color: Color.fromARGB(255, 14, 1, 1),fontWeight: FontWeight.bold),)
+          ),
+      ),
+      width:  190,      
+      height: 60,
+      decoration: BoxDecoration(
+        color:  Color.fromARGB(255, 184, 75, 7),
+        borderRadius: BorderRadius.only(topLeft:Radius.circular(25),bottomRight: Radius.circular(25) )
+      ),
+
+    );  
+  }
+}
 //////////////////////////////////////////////////////////////////////
 class _PriceTag extends StatelessWidget {
   final Size size;
+  final String precio;
   const _PriceTag({ 
     Key? key, 
-    required this.size,
+    required this.size, 
+    required this.precio,
   }) : super(key: key);
 
   @override
@@ -86,7 +139,7 @@ class _PriceTag extends StatelessWidget {
         fit: BoxFit.contain,
         child: Padding(
           padding:EdgeInsets.symmetric(horizontal: 10),
-          child: Text('\$196556',style: TextStyle(fontSize: 5,color: Color.fromARGB(255, 14, 1, 1),fontWeight: FontWeight.bold),)
+          child: Text(precio,style: TextStyle(fontSize: 5,color: Color.fromARGB(255, 14, 1, 1),fontWeight: FontWeight.bold),)
           ),
       ),
       width:  190,      
@@ -102,9 +155,13 @@ class _PriceTag extends StatelessWidget {
 //////////////////////////////////////////////////////////////////////
 class _productDetails extends StatelessWidget {
     final Size size;
+    final String Referencia;
+    final String Categoria;
   const _productDetails({
     Key? key, 
-    required this.size,
+    required this.size, 
+    required this.Referencia,
+    required this.Categoria,
   }) : super(key: key);
 
   @override
@@ -121,13 +178,13 @@ class _productDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                   Text(
-                    'REF ',
+                    Referencia,
                     style: TextStyle(fontSize: 20,color: Color.fromARGB(255, 14, 1, 1),fontWeight: FontWeight.bold),
                     maxLines:1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    'Id ',
+                    Categoria,
                     style: TextStyle(fontSize: 15,color: Color.fromARGB(255, 14, 1, 1),fontWeight: FontWeight.bold),
                   )                
               ],
@@ -157,6 +214,7 @@ class _Deslizartarjeta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final value = Provider.of<CounterProvider>(context);    
     return Container(
       width:  double.infinity,
       height: size.height*0.45,
@@ -167,13 +225,14 @@ class _Deslizartarjeta extends StatelessWidget {
         itemWidth: size.width*0.7,
         itemHeight: size.height*0.5,
         itemBuilder: (_, int index){
+        value.dataNow(index);
         final producto = productos[index];
 
         return GestureDetector(
             onTap: (){
              Navigator.push(
-              context,
-            MaterialPageRoute(builder: (context) => ProductsView())); 
+             context,
+             MaterialPageRoute(builder: (context) => ProductosView(productos:productos[value.counter].id))); 
             },
       child: Card(
             child: ClipRRect(
@@ -192,9 +251,3 @@ class _Deslizartarjeta extends StatelessWidget {
   }
 }
 
-
-
-/*                     ChangeNotifierProvider(
-                      create: ( _ ) => LoginFormProvider(),
-                      child: _LoginForm(), 
-                    )  */ 
