@@ -10,15 +10,14 @@ class Flurorouter{
   static final FluroRouter router = new FluroRouter();
   //Se crean las rutas de acceso
   //Principla Page
-  static String rootRoute = 'inicio';  
+  static String rootRoute = '/inicio';  
   //Auth Router
-  static String loginRoute = 'login';
+  static String loginRoute = '/login';
   //Login
-  static String registerRoute = 'register';
+  static String registerRoute = '/register';
   //Dashboard
-  static String dashboardRoute = 'dashboard';
+  static String dashboardRoute = '/dashboard';
   //Productos
-  static String productsRoute = 'productos';
 //////////////////////////////////////////////////////////////////////////////////////////////////
   static void configureRoutes(){
     router.define(rootRoute, handler: AdminHandlers.login,transitionType: TransitionType.none);
@@ -27,7 +26,7 @@ class Flurorouter{
   
   //Dashboard  
     router.define(dashboardRoute, handler: DashboardHandlers.dashboard);
-    router.define(productsRoute, handler: DashboardHandlers.products);
+
     router.notFoundHandler= NoPageFoundHandlers.noPageFound;
    
   }

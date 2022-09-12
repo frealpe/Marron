@@ -1,5 +1,5 @@
 import 'package:admin_dashboard/models/category.dart';
-import 'package:admin_dashboard/ui/views/categoria_view.dart';
+import 'package:admin_dashboard/providers/providers.dart';
 import 'package:flutter/material.dart';
 
 
@@ -39,11 +39,11 @@ class _MovieSliderState extends State<MovieSlider> {
   }
 
 
-  @override
+   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-  }
+  } 
 
   @override
   Widget build(BuildContext context) {
@@ -80,11 +80,10 @@ class _MovieSliderState extends State<MovieSlider> {
 class _MovieCategoria extends StatelessWidget {
   final Categoria categoria;
 
-  const _MovieCategoria(this.categoria);
+  const _MovieCategoria(this.categoria);  
     
   @override
     Widget build(BuildContext context) {
-      
       return Container(
                     width: 130,
                     height: 190,
@@ -92,12 +91,12 @@ class _MovieCategoria extends StatelessWidget {
                     child: Column(
                       children: [
                         GestureDetector(
+
                           //TODO HCAER LA NAVEGACION A TODOS LOS PRODUCTOS DE LA CATEGORIA ESCOGIDA
-                            onTap: (){                              
-                            Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => CategoriaView(categoria: categoria.id))); 
-                            },
+                            onTap: (){   
+                              final productosProvider = Provider.of<ProductosProvider>(context,listen: false);
+                              productosProvider.getProduCate(categoria.id);  
+                            }, 
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: FadeInImage(

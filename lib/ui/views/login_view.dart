@@ -59,7 +59,7 @@ final authProvider = Provider.of<AuthProvider>(context);
           child: Form(
 
            autovalidateMode: AutovalidateMode.always,  // Valida los campos de manera automática
-            key: loginFormProvider.formKey,       //Actualiza la llave
+           key: loginFormProvider.formKey,       //Actualiza la llave
             child: Column(
               children: [
                 
@@ -103,8 +103,6 @@ final authProvider = Provider.of<AuthProvider>(context);
                 CustomOutlinedButton(
                   onPressed: ()=>onFormSubmit(loginFormProvider,authProvider),
                   text: 'Ingresar',
-      //                color:Colors.red,
-      //                isFilled: true,
                   ),
                 
                 SizedBox(height: 20), 

@@ -6,7 +6,9 @@ import '../models/producto.dart';
 
 class ProductosProvider extends ChangeNotifier{
 
-  List <Producto>productos= [];
+List <Producto>productos= [];
+bool _disposed = false;
+  //GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
   ProductosProvider(){
   getProductos();
@@ -18,9 +20,9 @@ class ProductosProvider extends ChangeNotifier{
     final resp= await BolsosApi.httpGet('/productos/');
     
     final prodResp= ProductoResponse.fromMap(resp);
-    productos = [...prodResp.productos];
-     
-    notifyListeners();
+    productos = [...prodResp.productos]; 
+     notifyListeners();
+    
   }
 /////////////////////////////////////////////////////////////////////
  Future<Producto>getProductoById(String uid) async{
@@ -48,8 +50,6 @@ class ProductosProvider extends ChangeNotifier{
   ///////////////////////////////////////////
 void refreshProducto(Producto newProducto){
 
-  print(newProducto);
-  
   productos = this.productos.map(
     (producto) {
         if(producto.id == newProducto.id){
@@ -63,12 +63,17 @@ void refreshProducto(Producto newProducto){
   
 }
 /////////////////////////////////////////////////////////////////////
-  getProduCate(String uidc) async{
+ getProduCate(String uidc) async{
     productos.clear();
     final resp= await BolsosApi.httpGet('/buscar/producateg/$uidc');
+    //print(resp);
     final prodResp= ProductoResponse.fromMap(resp);
-    productos = [...prodResp.productos];     
+    //print(prodResp.productos[0].nombre);
+    productos = [...prodResp.productos];   
     notifyListeners();
+    
+    return productos;  
+
   }
 
 //////////////////////////////////////////////////////////////////////
@@ -113,5 +118,20 @@ Future newProducto( String name ) async {
       throw 'Error al actualizar la categoria';
     }
   }
+
+
+/* @override
+void dispose() {
+  _disposed = true;
+  super.dispose();
+}
+
+@override
+void notifyListeners() {
+  if (!_disposed) {
+    super.notifyListeners();
+  }
+} */
+
 
   }

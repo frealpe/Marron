@@ -47,7 +47,9 @@ class CardSwiper extends StatelessWidget {
               child: _productDetails(
                 size:size,
                 Referencia:productos[value.counter].nombre,
-                Categoria: productos[value.counter].categoria!.nombre,
+                Categoria: productos[value.counter].categoria!.nombre, 
+
+
                 ),    
               ),          
 
@@ -203,6 +205,7 @@ class _productDetails extends StatelessWidget {
 }
 ///////////////////////////////////////////////////////////////////
 class _Deslizartarjeta extends StatelessWidget {
+
   const _Deslizartarjeta({
     Key? key,
     required this.size,
@@ -215,6 +218,7 @@ class _Deslizartarjeta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final value = Provider.of<CounterProvider>(context);    
+    //key:
     return Container(
       width:  double.infinity,
       height: size.height*0.45,
@@ -224,29 +228,32 @@ class _Deslizartarjeta extends StatelessWidget {
         layout: SwiperLayout.STACK,
         itemWidth: size.width*0.7,
         itemHeight: size.height*0.5,
-        itemBuilder: (_, int index){
-        value.dataNow(index);
+        itemBuilder: (_, int index){        
         final producto = productos[index];
-
+        print(producto.nombre);
+        
         return GestureDetector(
-            onTap: (){
+            onTap: (){ 
              Navigator.push(
              context,
-             MaterialPageRoute(builder: (context) => ProductosView(productos:productos[value.counter].id))); 
+             MaterialPageRoute(builder: (context) => ProductosView(producto:productos[index])));  
             },
       child: Card(
+            //value.dataNow(index);
+
             child: ClipRRect(
               borderRadius:BorderRadius.circular(25),
               child: FadeInImage(                
                 placeholder: AssetImage ('assets/no-image.jpg'),
                 image: NetworkImage(producto.img!),                
                 fit: BoxFit.cover,
+                
                 ),
             ),
             ),
             );
         },
-        ),
+        ), 
     );
   }
 }

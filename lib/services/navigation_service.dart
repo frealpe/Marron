@@ -6,6 +6,7 @@ class NavigationServer{
   static final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 
   static navigateTo (String routeName){
+    print(navigatorKey.currentState!.pushNamed(routeName));
     return navigatorKey.currentState!.pushNamed(routeName);
   }
 

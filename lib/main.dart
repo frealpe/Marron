@@ -2,6 +2,7 @@
 import 'package:admin_dashboard/providers/login_form_provider.dart';
 import 'package:admin_dashboard/providers/producto_form_provider.dart';
 import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
+import 'package:admin_dashboard/ui/views/productos_view.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/api/BolsosApi.dart';
 import 'package:admin_dashboard/providers/providers.dart';
@@ -63,6 +64,7 @@ class AppState extends StatelessWidget {
 
         ChangeNotifierProvider(
           //No necesita el Lazy por que se crea por demanda 
+          lazy:false,
           create: (_)=> ProductosProvider()
           ),
 
@@ -118,6 +120,7 @@ class MyApp extends StatelessWidget {
       }else{
       return AuthLayout(child:child!);}
       },
+
         theme: ThemeData.light().copyWith(
         appBarTheme: AppBarTheme(
         color:  Color(0xff441c04),

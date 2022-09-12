@@ -1,20 +1,23 @@
+
+import 'package:admin_dashboard/models/producto.dart';
 import 'package:admin_dashboard/widgets/Background.dart';
 import 'package:admin_dashboard/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 
-
-
 class ProductosView extends StatelessWidget {
 
-  final String productos;
+final Producto? producto;
+
   ProductosView({
-    Key? key,
-    required this.productos
+    Key? key,    
+    this.producto,
     }) : super(key: key);
 
-  @override
+    @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    print('Entre');
+    print(producto!.nombre);
+    return  Scaffold(
        body: Stack(
         children:[
         Background(),
@@ -22,5 +25,11 @@ class ProductosView extends StatelessWidget {
         ]
       ),
     );
+    
+
+
+    
   }
+  
 }
+
