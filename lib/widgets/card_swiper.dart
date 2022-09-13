@@ -228,30 +228,35 @@ class _Deslizartarjeta extends StatelessWidget {
         layout: SwiperLayout.STACK,
         itemWidth: size.width*0.7,
         itemHeight: size.height*0.5,
-        itemBuilder: (_, int index){        
+        itemBuilder: (_, int index)
+        {        
+        
         final producto = productos[index];
         print(producto.nombre);
-        
         return GestureDetector(
             onTap: (){ 
              Navigator.push(
              context,
              MaterialPageRoute(builder: (context) => ProductosView(producto:productos[index])));  
             },
-      child: Card(
-            //value.dataNow(index);
+//        print(productos[index].nombre);
 
-            child: ClipRRect(
-              borderRadius:BorderRadius.circular(25),
-              child: FadeInImage(                
-                placeholder: AssetImage ('assets/no-image.jpg'),
-                image: NetworkImage(producto.img!),                
-                fit: BoxFit.cover,
-                
-                ),
-            ),
-            ),
+          child: Container(
+            child: Card(
+              child: ClipRRect(
+                borderRadius:BorderRadius.circular(25),
+                child: FadeInImage(          
+                  placeholder: AssetImage ('assets/no-image.jpg'),
+                  image: NetworkImage(producto.img!),                
+                  fit: BoxFit.cover,
+                  
+                  ),
+              ),
+              ),
+          ),
             );
+
+
         },
         ), 
     );
