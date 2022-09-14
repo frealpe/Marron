@@ -6,9 +6,14 @@ import '../models/producto.dart';
 
 class ProductosProvider extends ChangeNotifier{
 
+  int _value = 0;
+  get estadoc => this._value;
+
 List <Producto>productos= [];
 bool _disposed = false;
   //GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+
+///////////////////////////////////////////////////////////
 
   ProductosProvider(){
   getProductos();
@@ -65,14 +70,13 @@ void refreshProducto(Producto newProducto){
 /////////////////////////////////////////////////////////////////////
  getProduCate(String uidc) async{
     productos.clear();
+    
     final resp= await BolsosApi.httpGet('/buscar/producateg/$uidc');
     //print(resp);
     final prodResp= ProductoResponse.fromMap(resp);
-    //print(prodResp.productos[0].nombre);
     productos = [...prodResp.productos];   
     notifyListeners();
-    
-    return productos;  
+    return productos.length;  
 
   }
 

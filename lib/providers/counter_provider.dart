@@ -1,16 +1,23 @@
 
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math_lists.dart';
 
 class CounterProvider extends ChangeNotifier{ 
 
   int _value = 0;
+
   get counter => this._value;
 
-  void dataNow(index){
+  //set initval => this._initvalue;
 
-    
-    this._value=index;
+
+
+  void dataNow(index,lvaue){  
+
+      if(index>0){
+         this._value = index-1;
+      } else{
+        this._value= lvaue-1;
+      }
 
     WidgetsBinding.instance.addPostFrameCallback((_)
      {

@@ -4,7 +4,7 @@ import 'package:admin_dashboard/ui/views/productos_view.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
-
+/////////////////////////////////////////////////////////////////////
 class CardSwiper extends StatelessWidget {
 
   List <Producto> productos;
@@ -39,37 +39,35 @@ class CardSwiper extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
+            /////////////////////////////////////            
             _Deslizartarjeta(size: size, productos: productos),
-            
-            Positioned(
+            /////////////////////////////////////
+             Positioned(
               top: 590,
               left: 0,
               child: _productDetails(
-                size:size,
-                Referencia:productos[value.counter].nombre,
-                Categoria: productos[value.counter].categoria!.nombre, 
-
-
+                posicion :value.counter,
+                productos: productos,
                 ),    
               ),          
-
+            /////////////////////////////////////
             Positioned(
-              top: 0,
+              top: -1,
               right: 0,
               child: _PriceTag(
-                size:size,
-                precio: productos[value.counter].precio,
+                posicion :value.counter,
+                productos: productos,
                 )
               ),      
-            //MOSTRAR DE MANERA CONDICIONAL
+            /////////////////////////////////////
             Positioned(
-              top: 0,
+              top: -1,
               left: 0,
               child: _NotAvalible(
-                size: size,
-                disponible :productos[value.counter].disponible, 
+                posicion :value.counter,
+                productos: productos,
                 )
-              )                   
+              )                    
           ],
         ),
 
@@ -80,13 +78,13 @@ class CardSwiper extends StatelessWidget {
 
   BoxDecoration _cardBorders() => BoxDecoration(
 
-      color: Colors.white,
+      color: Color.fromARGB(255, 124, 117, 117),
       borderRadius: BorderRadius.circular(25),
       boxShadow: [
         BoxShadow(
-          color:  Color(0xff441c04),
-          offset: Offset(0,7),
-          blurRadius: 10
+          color:  Color.fromARGB(255, 66, 33, 12),
+          offset: Offset(0,8),
+          blurRadius: 15
         )
       ]
 
@@ -94,30 +92,34 @@ class CardSwiper extends StatelessWidget {
 }
 /////////////////////////////////////////////////////////////////////
 class _NotAvalible extends StatelessWidget {
-  final String disponible;
+   final int posicion;
+   final List<Producto> productos;
 
   const _NotAvalible({
-    Key? key,
-    required this.size,
-    required this.disponible,
-  }) : super(key: key);
+    Key? key, 
+    required this.posicion, 
+    required this.productos,
 
-  final Size size;
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-        return Container(
+
+    final value = Provider.of<CounterProvider>(context);    
+    final disponible = productos[value.counter].disponible;
+    
+    return Container(
       child: FittedBox(
         fit: BoxFit.contain,
         child: Padding(
           padding:EdgeInsets.symmetric(horizontal: 10),
-          child: Text(disponible,style: TextStyle(fontSize: 5,color: Color.fromARGB(255, 14, 1, 1),fontWeight: FontWeight.bold),)
+          child: Text(disponible,style: TextStyle(fontSize: 5,color: Color.fromARGB(255, 252, 252, 252),fontWeight: FontWeight.bold),)
           ),
       ),
       width:  190,      
       height: 60,
       decoration: BoxDecoration(
-        color:  Color.fromARGB(255, 184, 75, 7),
+        color:  Color.fromARGB(255, 165, 129, 107),
         borderRadius: BorderRadius.only(topLeft:Radius.circular(25),bottomRight: Radius.circular(25) )
       ),
 
@@ -126,28 +128,30 @@ class _NotAvalible extends StatelessWidget {
 }
 //////////////////////////////////////////////////////////////////////
 class _PriceTag extends StatelessWidget {
-  final Size size;
-  final String precio;
+   final int posicion;
+   final List<Producto> productos;
   const _PriceTag({ 
     Key? key, 
-    required this.size, 
-    required this.precio,
+    required this.posicion, 
+    required this.productos, 
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final value = Provider.of<CounterProvider>(context);    
+    final precio = productos[value.counter].precio;
     return Container(
       child: FittedBox(
         fit: BoxFit.contain,
         child: Padding(
           padding:EdgeInsets.symmetric(horizontal: 10),
-          child: Text(precio,style: TextStyle(fontSize: 5,color: Color.fromARGB(255, 14, 1, 1),fontWeight: FontWeight.bold),)
+          child: Text(precio,style: TextStyle(fontSize: 5,color: Color.fromARGB(255, 255, 255, 255),fontWeight: FontWeight.bold),)
           ),
       ),
       width:  190,      
       height: 60,
       decoration: BoxDecoration(
-        color:  Color.fromARGB(255, 124, 48, 1),
+        color:  Color.fromARGB(255, 165, 129, 107),
         borderRadius: BorderRadius.only(topRight:Radius.circular(25),bottomLeft: Radius.circular(25) )
       ),
 
@@ -156,18 +160,21 @@ class _PriceTag extends StatelessWidget {
 }
 //////////////////////////////////////////////////////////////////////
 class _productDetails extends StatelessWidget {
-    final Size size;
-    final String Referencia;
-    final String Categoria;
+
+   final int posicion;
+   final List<Producto> productos;
   const _productDetails({
     Key? key, 
-    required this.size, 
-    required this.Referencia,
-    required this.Categoria,
+    required this.posicion, 
+    required this.productos, 
   }) : super(key: key);
-
+ 
   @override
   Widget build(BuildContext context) {
+    final value = Provider.of<CounterProvider>(context);    
+    final referencia = productos[value.counter].nombre;
+    final categorian =  productos[value.counter].categoria!.nombre;
+    //posicion_card().resetval(0);
     return Container(
       child: Padding(
         padding: EdgeInsets.only(right: 310),
@@ -180,14 +187,14 @@ class _productDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                   Text(
-                    Referencia,
-                    style: TextStyle(fontSize: 20,color: Color.fromARGB(255, 14, 1, 1),fontWeight: FontWeight.bold),
+                    referencia,
+                    style: TextStyle(fontSize: 20,color: Color.fromARGB(255, 255, 255, 255),fontWeight: FontWeight.bold),
                     maxLines:1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    Categoria,
-                    style: TextStyle(fontSize: 15,color: Color.fromARGB(255, 14, 1, 1),fontWeight: FontWeight.bold),
+                    categorian,
+                    style: TextStyle(fontSize: 15,color: Color.fromARGB(255, 255, 255, 255),fontWeight: FontWeight.bold),
                   )                
               ],
             ),
@@ -199,7 +206,7 @@ class _productDetails extends StatelessWidget {
 
   BoxDecoration _BuildboxDecoartion() => BoxDecoration(
 
-    color:  Color.fromARGB(255, 124, 48, 1),
+    color:  Color.fromARGB(255, 165, 129, 107),
     borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),topRight: Radius.circular(25))
   );
 }
@@ -229,17 +236,15 @@ class _Deslizartarjeta extends StatelessWidget {
         itemWidth: size.width*0.7,
         itemHeight: size.height*0.5,
         itemBuilder: (_, int index)
-        {        
-        
+        {                
         final producto = productos[index];
-        print(producto.nombre);
+        value.dataNow(index,productos.length);
         return GestureDetector(
             onTap: (){ 
              Navigator.push(
              context,
              MaterialPageRoute(builder: (context) => ProductosView(producto:productos[index])));  
             },
-//        print(productos[index].nombre);
 
           child: Container(
             child: Card(

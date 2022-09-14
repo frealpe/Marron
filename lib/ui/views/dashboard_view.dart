@@ -19,7 +19,7 @@ class DashboardView extends StatelessWidget {
         ),
       body: Stack(
         children: [
-        Background(),
+        //Background(),
         _HomeBody()
         ],
       ),    
@@ -34,7 +34,6 @@ class _HomeBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
- //       PageTitle(),
         CategoriesView(),
           
         ],

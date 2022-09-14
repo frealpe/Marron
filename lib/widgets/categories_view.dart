@@ -9,8 +9,8 @@ class CategoriesView extends StatelessWidget {
   Widget build(BuildContext context) {
     final categoriaProvider = Provider.of<CategoriesProvider>(context);
     final productosProvider = Provider.of<ProductosProvider>(context);
-    final String title;
-
+    final value = Provider.of<CounterProvider>(context,listen: false);
+    value.dataNow(productosProvider.productos.length,productosProvider.productos.length);
     return Container(
 
         child: Column(

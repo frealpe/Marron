@@ -35,10 +35,7 @@ class _MovieSliderState extends State<MovieSlider> {
       }
 
     });
-
   }
-
-
    @override
   void dispose() {
     // TODO: implement dispose
@@ -58,7 +55,13 @@ class _MovieSliderState extends State<MovieSlider> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(widget.title!,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      //color:  Color.fromARGB(255, 165, 129, 107),
+                      style: TextStyle(
+                        fontSize: 20, 
+                        color:  Color.fromARGB(255, 255, 255, 255),
+                        fontWeight: FontWeight.bold
+                        )
+                        ),
                 ),
           SizedBox(height: 5),
           Expanded(
@@ -76,7 +79,7 @@ class _MovieSliderState extends State<MovieSlider> {
   }
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////
 class _MovieCategoria extends StatelessWidget {
   final Categoria categoria;
 
@@ -84,6 +87,8 @@ class _MovieCategoria extends StatelessWidget {
     
   @override
     Widget build(BuildContext context) {
+    final productosProvider = Provider.of<ProductosProvider>(context,listen:false);
+
       return Container(
                     width: 130,
                     height: 190,
@@ -91,11 +96,9 @@ class _MovieCategoria extends StatelessWidget {
                     child: Column(
                       children: [
                         GestureDetector(
-
                           //TODO HCAER LA NAVEGACION A TODOS LOS PRODUCTOS DE LA CATEGORIA ESCOGIDA
-                            onTap: (){   
-                              final productosProvider = Provider.of<ProductosProvider>(context,listen: false);
-                              productosProvider.getProduCate(categoria.id);  
+                            onTap: (){                                
+                              productosProvider.getProduCate(categoria.id);
                             }, 
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
@@ -111,6 +114,7 @@ class _MovieCategoria extends StatelessWidget {
                         SizedBox(height: 5,),
                           Text(
                           categoria.nombre,
+                          //color:  Color.fromARGB(255, 165, 129, 107),
                           maxLines: 2,
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,)
