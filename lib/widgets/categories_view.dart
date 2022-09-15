@@ -16,7 +16,22 @@ class CategoriesView extends StatelessWidget {
         child: Column(
 
           children: [
-            SizedBox( height: 30 ), 
+////////////////////////////////////////////////////////
+             Positioned(
+              top: 20,
+              left: 1,
+              child: IconButton(
+                onPressed: ()=> productosProvider.getProductos(),
+                icon: Icon(
+                Icons.arrow_back_ios_new,size:40,
+                color:  Color.fromARGB(255, 66, 33, 12),
+                ) 
+                
+                )
+              ),            
+////////////////////////////////////////////////////////              
+            SizedBox( height: 10 ), 
+////////////////////////////////////////////////////////
             CardSwiper(
             productos:productosProvider.productos            
             ),
@@ -25,7 +40,7 @@ class CategoriesView extends StatelessWidget {
 ////////////////////////////////////////////////////////////            
             MovieSlider(
             categoria: categoriaProvider.categorias,
-            title: 'Categorias de Todos los Productos',
+            title: 'Categorías de Productos',
             onNexPage: () => categoriaProvider.getCategories(),
             ), 
           ],

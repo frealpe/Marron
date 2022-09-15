@@ -29,10 +29,10 @@ class CardSwiper extends StatelessWidget {
         );
       }
       return Padding(
-
         padding: EdgeInsets.symmetric(horizontal: 25),        
         child: Container(
-        margin: EdgeInsets.only(top: 10,bottom: 10),
+
+        margin: EdgeInsets.only(top: 1,bottom: 1),
         width:  double.infinity,      
         height: size.height*0.6,
         decoration: _cardBorders(),
@@ -41,7 +41,8 @@ class CardSwiper extends StatelessWidget {
           children: [
             /////////////////////////////////////            
             _Deslizartarjeta(size: size, productos: productos),
-            /////////////////////////////////////
+
+////////////////////////////////////////////////////////                        
              Positioned(
               top: 590,
               left: 0,
@@ -79,7 +80,7 @@ class CardSwiper extends StatelessWidget {
   BoxDecoration _cardBorders() => BoxDecoration(
 
       color: Color.fromARGB(255, 124, 117, 117),
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(35),
       boxShadow: [
         BoxShadow(
           color:  Color.fromARGB(255, 66, 33, 12),
@@ -113,13 +114,22 @@ class _NotAvalible extends StatelessWidget {
         fit: BoxFit.contain,
         child: Padding(
           padding:EdgeInsets.symmetric(horizontal: 10),
-          child: Text(disponible,style: TextStyle(fontSize: 5,color: Color.fromARGB(255, 252, 252, 252),fontWeight: FontWeight.bold),)
+          child: Text(disponible,
+                          style: TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 15,
+                          fontWeight: FontWeight.normal,
+                          fontStyle: FontStyle.normal,
+                          shadows:[Shadow(color:Color.fromARGB(136, 15, 15, 15), offset:Offset(1,2), blurRadius: 4 ) ]
+                           
+                          ),
+          )
           ),
       ),
       width:  190,      
       height: 60,
       decoration: BoxDecoration(
-        color:  Color.fromARGB(255, 165, 129, 107),
+        color:  Color.fromARGB(255, 114, 94, 81),
         borderRadius: BorderRadius.only(topLeft:Radius.circular(25),bottomRight: Radius.circular(25) )
       ),
 
@@ -145,7 +155,16 @@ class _PriceTag extends StatelessWidget {
         fit: BoxFit.contain,
         child: Padding(
           padding:EdgeInsets.symmetric(horizontal: 10),
-          child: Text(precio,style: TextStyle(fontSize: 5,color: Color.fromARGB(255, 255, 255, 255),fontWeight: FontWeight.bold),)
+          child: Text(precio,
+                          style: TextStyle(
+                          color: Color.fromARGB(255, 14, 14, 14),
+                          fontSize: 15,
+                          fontWeight: FontWeight.normal,
+                          fontStyle: FontStyle.normal,
+                          shadows:[Shadow(color:Color.fromARGB(136, 15, 15, 15), offset:Offset(1,2), blurRadius: 4 ) ]
+                           
+                          ),
+          )
           ),
       ),
       width:  190,      
@@ -174,7 +193,7 @@ class _productDetails extends StatelessWidget {
     final value = Provider.of<CounterProvider>(context);    
     final referencia = productos[value.counter].nombre;
     final categorian =  productos[value.counter].categoria!.nombre;
-    //posicion_card().resetval(0);
+
     return Container(
       child: Padding(
         padding: EdgeInsets.only(right: 310),
@@ -184,18 +203,21 @@ class _productDetails extends StatelessWidget {
             height: 70,
             decoration: _BuildboxDecoartion(),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                   Text(
                     referencia,
-                    style: TextStyle(fontSize: 20,color: Color.fromARGB(255, 255, 255, 255),fontWeight: FontWeight.bold),
-                    maxLines:1,
+                          style: TextStyle(
+                          color: Color.fromARGB(255, 10, 10, 10),
+                          fontSize: 35,
+                          fontWeight: FontWeight.normal,
+                          fontStyle: FontStyle.normal,
+                          shadows:[Shadow(color:Color.fromARGB(135, 54, 39, 39), offset:Offset(1,2), blurRadius: 4 ) ]
+                           
+                          ),
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Text(
-                    categorian,
-                    style: TextStyle(fontSize: 15,color: Color.fromARGB(255, 255, 255, 255),fontWeight: FontWeight.bold),
-                  )                
+               
               ],
             ),
       
@@ -206,7 +228,7 @@ class _productDetails extends StatelessWidget {
 
   BoxDecoration _BuildboxDecoartion() => BoxDecoration(
 
-    color:  Color.fromARGB(255, 165, 129, 107),
+    color:  Color.fromARGB(255, 158, 135, 121),
     borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),topRight: Radius.circular(25))
   );
 }
@@ -228,8 +250,8 @@ class _Deslizartarjeta extends StatelessWidget {
     //key:
     return Container(
       width:  double.infinity,
-      height: size.height*0.45,
-
+      height: size.height*0.45,      
+      //decoration: _cardBorders(),
       child: Swiper(
         itemCount: productos.length,
         layout: SwiperLayout.STACK,
@@ -247,9 +269,9 @@ class _Deslizartarjeta extends StatelessWidget {
             },
 
           child: Container(
-            child: Card(
+            child: Card(          
               child: ClipRRect(
-                borderRadius:BorderRadius.circular(25),
+                borderRadius:BorderRadius.circular(5),
                 child: FadeInImage(          
                   placeholder: AssetImage ('assets/no-image.jpg'),
                   image: NetworkImage(producto.img!),                
@@ -260,11 +282,24 @@ class _Deslizartarjeta extends StatelessWidget {
               ),
           ),
             );
-
-
         },
         ), 
     );
   }
+
+  BoxDecoration _cardBorders() => BoxDecoration(
+      color: Color.fromARGB(255, 196, 191, 191),
+      borderRadius: BorderRadius.circular(19),
+      boxShadow: [
+        BoxShadow(
+          color:  Color.fromARGB(255, 110, 98, 98),
+          offset: Offset(0,8),
+          blurRadius: 15
+        )
+      ]
+
+
+  );
+
 }
 

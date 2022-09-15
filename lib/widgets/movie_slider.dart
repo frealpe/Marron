@@ -46,20 +46,20 @@ class _MovieSliderState extends State<MovieSlider> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 260,
+      height: 360,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:  [
           
           if (this.widget.title != null)
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 30),
                   child: Text(widget.title!,
-                      //color:  Color.fromARGB(255, 165, 129, 107),
                       style: TextStyle(
-                        fontSize: 20, 
-                        color:  Color.fromARGB(255, 255, 255, 255),
-                        fontWeight: FontWeight.bold
+                            fontSize: 24,
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FontStyle.normal,
+                            shadows:[Shadow(color:Color.fromARGB(136, 15, 15, 15), offset:Offset(1,2), blurRadius: 4 ) ]
                         )
                         ),
                 ),
@@ -92,7 +92,7 @@ class _MovieCategoria extends StatelessWidget {
       return Container(
                     width: 130,
                     height: 190,
-                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    margin: EdgeInsets.symmetric(horizontal: 15),
                     child: Column(
                       children: [
                         GestureDetector(
@@ -114,7 +114,14 @@ class _MovieCategoria extends StatelessWidget {
                         SizedBox(height: 5,),
                           Text(
                           categoria.nombre,
-                          //color:  Color.fromARGB(255, 165, 129, 107),
+                          style: TextStyle(
+                          color: Color.fromARGB(255, 116, 69, 9),
+                          fontSize: 15,
+                          fontWeight: FontWeight.normal,
+                          fontStyle: FontStyle.normal,
+                          shadows:[Shadow(color:Color.fromARGB(136, 15, 15, 15), offset:Offset(1,2), blurRadius: 4 ) ]
+                           
+                          ),
                           maxLines: 2,
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,)
@@ -124,10 +131,7 @@ class _MovieCategoria extends StatelessWidget {
     }
   }
 
-
-
-        
-
+//////////////////////////////////////////////////////////////////////
 
 
   
