@@ -107,17 +107,17 @@ class _NotAvalible extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final value = Provider.of<CounterProvider>(context);    
-    final disponible = productos[value.counter].disponible;
+    final categoria = productos[value.counter].categoria!.nombre;
     
     return Container(
       child: FittedBox(
         fit: BoxFit.contain,
         child: Padding(
           padding:EdgeInsets.symmetric(horizontal: 10),
-          child: Text(disponible,
+          child: Text(categoria,
                           style: TextStyle(
                           color: Color.fromARGB(255, 0, 0, 0),
-                          fontSize: 15,
+                          fontSize: 8,
                           fontWeight: FontWeight.normal,
                           fontStyle: FontStyle.normal,
                           shadows:[Shadow(color:Color.fromARGB(136, 15, 15, 15), offset:Offset(1,2), blurRadius: 4 ) ]
@@ -126,8 +126,8 @@ class _NotAvalible extends StatelessWidget {
           )
           ),
       ),
-      width:  190,      
-      height: 60,
+      width:  150,      
+      height: 65,
       decoration: BoxDecoration(
         color:  Color.fromARGB(255, 114, 94, 81),
         borderRadius: BorderRadius.only(topLeft:Radius.circular(25),bottomRight: Radius.circular(25) )
@@ -158,7 +158,7 @@ class _PriceTag extends StatelessWidget {
           child: Text(precio,
                           style: TextStyle(
                           color: Color.fromARGB(255, 14, 14, 14),
-                          fontSize: 15,
+                          fontSize: 6,
                           fontWeight: FontWeight.normal,
                           fontStyle: FontStyle.normal,
                           shadows:[Shadow(color:Color.fromARGB(136, 15, 15, 15), offset:Offset(1,2), blurRadius: 4 ) ]
@@ -167,8 +167,8 @@ class _PriceTag extends StatelessWidget {
           )
           ),
       ),
-      width:  190,      
-      height: 60,
+      width:  150,      
+      height: 65,
       decoration: BoxDecoration(
         color:  Color.fromARGB(255, 165, 129, 107),
         borderRadius: BorderRadius.only(topRight:Radius.circular(25),bottomLeft: Radius.circular(25) )
@@ -199,8 +199,8 @@ class _productDetails extends StatelessWidget {
         padding: EdgeInsets.only(right: 310),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-            width:  200,      
-            height: 70,
+/*             width:  200,      
+            height: 70, */
             decoration: _BuildboxDecoartion(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -209,7 +209,7 @@ class _productDetails extends StatelessWidget {
                     referencia,
                           style: TextStyle(
                           color: Color.fromARGB(255, 10, 10, 10),
-                          fontSize: 35,
+                          fontSize: 15,
                           fontWeight: FontWeight.normal,
                           fontStyle: FontStyle.normal,
                           shadows:[Shadow(color:Color.fromARGB(135, 54, 39, 39), offset:Offset(1,2), blurRadius: 4 ) ]
@@ -227,7 +227,6 @@ class _productDetails extends StatelessWidget {
   }
 
   BoxDecoration _BuildboxDecoartion() => BoxDecoration(
-
     color:  Color.fromARGB(255, 158, 135, 121),
     borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),topRight: Radius.circular(25))
   );
