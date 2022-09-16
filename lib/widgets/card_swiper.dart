@@ -34,7 +34,7 @@ class CardSwiper extends StatelessWidget {
 
         margin: EdgeInsets.only(top: 1,bottom: 1),
         width:  double.infinity,      
-        height: size.height*0.6,
+        height: size.height*0.61,
         decoration: _cardBorders(),
         child: Stack(
           alignment: Alignment.center,
@@ -44,7 +44,7 @@ class CardSwiper extends StatelessWidget {
 
 ////////////////////////////////////////////////////////                        
              Positioned(
-              top: 590,
+              top: 425,
               left: 0,
               child: _productDetails(
                 posicion :value.counter,
@@ -199,8 +199,8 @@ class _productDetails extends StatelessWidget {
         padding: EdgeInsets.only(right: 310),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-/*             width:  200,      
-            height: 70, */
+            width:  150,      
+            height: 65,
             decoration: _BuildboxDecoartion(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -209,7 +209,7 @@ class _productDetails extends StatelessWidget {
                     referencia,
                           style: TextStyle(
                           color: Color.fromARGB(255, 10, 10, 10),
-                          fontSize: 15,
+                          fontSize: 25,
                           fontWeight: FontWeight.normal,
                           fontStyle: FontStyle.normal,
                           shadows:[Shadow(color:Color.fromARGB(135, 54, 39, 39), offset:Offset(1,2), blurRadius: 4 ) ]

@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/search/search_delegate.dart';
 import 'package:admin_dashboard/widgets/categories_view.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +11,13 @@ class DashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text('Categorias existentes'),
+            title: Text('Productos existentes'),
             elevation: 0,
             actions: [
-              IconButton(onPressed: (){}, icon: Icon(Icons.search_off_outlined))
+              IconButton(
+                icon: Icon(Icons.search_off_outlined),
+                onPressed: ()=>showSearch(context: context, delegate: ProductSearchDelegate()),
+                )
             ],
         ),
       body: Stack(
