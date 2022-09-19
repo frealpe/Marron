@@ -98,17 +98,3 @@ class Final_retorno extends StatelessWidget {
   }
 }
 
-/* StreamBuilder(
-        stream: productosProvider.productos,
-        builder: ( _, AsyncSnapshot<List<Movie>> snapshot) {
-          
-          if( !snapshot.hasData ) return _emptyContainer();
-
-          final movies = snapshot.data!;
-
-          return ListView.builder(
-            itemCount: movies.length,
-            itemBuilder: ( _, int index ) => _MovieItem( movies[index])
-          );
-        },
-      ); */

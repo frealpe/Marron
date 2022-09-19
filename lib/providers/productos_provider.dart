@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:admin_dashboard/helpers/debouncer.dart';
+import 'package:admin_dashboard/models/busqueda.dart';
 import 'package:admin_dashboard/models/http/productos_response.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/api/BolsosApi.dart';
@@ -9,14 +13,24 @@ class ProductosProvider extends ChangeNotifier{
   int _value = 0;
   get estadoc => this._value;
 
+  final debouncer = Debouncer(
+    duration: Duration(microseconds: 500),
+    
+    );
+
 List <Producto>productos= [];
-bool _disposed = false;
+List <Productobus> producbs= [];
+
+final StreamController<List<Productobus>>_suggestionsStreamController= new StreamController.broadcast();
+Stream<List<Productobus>> get suggestionsStream => this._suggestionsStreamController.stream;
+
 GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
 ///////////////////////////////////////////////////////////
 
   ProductosProvider(){
   getProductos();
+ // _suggestionsStreamController.close();
 
 }
 /////////////////////////////////////////////////////////////////////
@@ -81,23 +95,16 @@ void refreshProducto(Producto newProducto){
   }
 /////////////////////////////////////////////////////////////////////
  busProduct(String uidc) async{
-    productos.clear();
-
-    print(uidc);
-    
+    producbs.clear();   
     final resp= await BolsosApi.httpGet('/buscar/productos/$uidc');
-    print(resp);
-    final prodResp= Producto.fromMap(resp["productos"]);
-    print('salisa');
-    //    productos = [...prodResp];   
-    //notifyListeners();
+    final prodResp= Productobus.fromMap(resp);
+    print(prodResp);
+    notifyListeners();
     return prodResp;  
 
   }
 //////////////////////////////////////////////////////////////////////
 Future newProducto( String name ) async {
-
-
     final data = {
       'nombre': name,
     };

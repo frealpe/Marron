@@ -2,28 +2,28 @@ import 'dart:convert';
 
 class Productobus {
     Productobus({
-        required this.id,
-        required this.nombre,
-        required this.genero,
-        required this.cantidad,
-        required this.usuario,
-        required this.precio,
-        required this.categoria,
-        required this.descripcion,
-        required this.disponible,
+        this.id,
+        this.nombre,
+        this.genero,
+        this.cantidad,
+        this.usuario,
+        this.precio,
+        this.categoria,
+        this.descripcion,
+        this.disponible,
         this.img,
 
     });
 
-    String id;
-    String nombre;
-    String genero;
-    String cantidad;
-    String usuario;
-    String precio;
-    String categoria;
-    String descripcion;
-    String disponible;
+    String? id;
+    String? nombre;
+    String? genero;
+    String? cantidad;
+    String? usuario;
+    String? precio;
+    String? categoria;
+    String? descripcion;
+    String? disponible;
     String? img;
 
 
@@ -64,31 +64,3 @@ class Productobus {
 
 }
 
-class Categoriap {
-    Categoriap({
-        required this.id,
-        required this.nombre,
-    });
-
-    String id;
-    String nombre;
-
-    factory Categoriap.fromJson(String str) => Categoriap.fromMap(json.decode(str));
-
-    String toJson() => json.encode(toMap());
-
-
-    factory Categoriap.fromMap(Map<String, dynamic> json){
-
-        return Categoriap (
-        nombre: json["nombre"],
-        id: json["_id"],
-        );
-    }
-    
-
-    Map<String, dynamic> toMap() => {
-        "_id": id,
-        "nombre": nombre,
-    };
-}
