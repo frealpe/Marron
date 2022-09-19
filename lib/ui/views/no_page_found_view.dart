@@ -9,11 +9,11 @@ class NoPageFoundView extends StatelessWidget {
     return Container(
       child: Center(
         child: Text(
-          'Página no encontrada',
+          'Contactos: 3128956340',
           style: GoogleFonts.montserratAlternates(
-            fontSize: 50,
+            fontSize: 40,
             fontWeight: FontWeight.bold
-          ),
+          ),          
           )
         ),
 
