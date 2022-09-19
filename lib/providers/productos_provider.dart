@@ -11,7 +11,7 @@ class ProductosProvider extends ChangeNotifier{
 
 List <Producto>productos= [];
 bool _disposed = false;
-  //GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
 ///////////////////////////////////////////////////////////
 
@@ -79,7 +79,21 @@ void refreshProducto(Producto newProducto){
     return productos.length;  
 
   }
+/////////////////////////////////////////////////////////////////////
+ busProduct(String uidc) async{
+    productos.clear();
 
+    print(uidc);
+    
+    final resp= await BolsosApi.httpGet('/buscar/productos/$uidc');
+    print(resp);
+    final prodResp= Producto.fromMap(resp["productos"]);
+    print('salisa');
+    //    productos = [...prodResp];   
+    //notifyListeners();
+    return prodResp;  
+
+  }
 //////////////////////////////////////////////////////////////////////
 Future newProducto( String name ) async {
 

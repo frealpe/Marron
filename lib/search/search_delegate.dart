@@ -1,5 +1,4 @@
 
-import 'package:admin_dashboard/models/http/productoid_response.dart';
 import 'package:admin_dashboard/providers/providers.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,7 @@ class ProductSearchDelegate extends SearchDelegate{
   // TODO: implement searchFieldDecorationTheme
   String? get searchFieldLabel => 'Buscar artículo';
   
-  
+//////////////////////////////////////////////////////////////////////////////  
   @override
   List<Widget>? buildActions(BuildContext context) {
     // TODO: implement buildActions
@@ -21,7 +20,7 @@ class ProductSearchDelegate extends SearchDelegate{
         )
     ]; 
   }
-
+//////////////////////////////////////////////////////////////////////////////
   @override
   Widget? buildLeading(BuildContext context) {
     // TODO: implement buildLeading
@@ -32,13 +31,13 @@ class ProductSearchDelegate extends SearchDelegate{
       }, 
       );
   }
-
+//////////////////////////////////////////////////////////////////////////////
   @override
   Widget buildResults(BuildContext context) {
     // TODO: implement buildResults
     throw UnimplementedError();
   }
-
+//////////////////////////////////////////////////////////////////////////////
 Widget _emptyContainer(){
   return Container(
         child: Center(
@@ -47,6 +46,7 @@ Widget _emptyContainer(){
       );
 }
 
+//////////////////////////////////////////////////////////////////////////////
   @override
   Widget buildSuggestions(BuildContext context) {
  
@@ -54,21 +54,61 @@ Widget _emptyContainer(){
       return _emptyContainer();
     }
 
-
-  final productosProvider = Provider.of<ProductosProvider>(context,listen: false);
-
-   return FutureBuilder(
-    future: productosProvider.getProduCate(query),
-    builder: (_,AsyncSnapshot<List<Producto>> snapshot) {
-      if(!snapshot.hasData)return _emptyContainer();
-
-      return Container();
-    },
+   return  Busqueda(query:query);
     
-    );
   }
-
+//////////////////////////////////////////////////////////////////////////////
 
 }
 
-//getProduCate
+//////////////////////////////////////////////////////////////////////////////
+class Busqueda extends StatelessWidget {
+
+  final String query;
+
+  const Busqueda({super.key, 
+  required this.query
+  });
+  @override
+  Widget build(BuildContext context) {
+
+    return ChangeNotifierProvider(
+              create: ( _ ) => ProductosProvider(),
+              child: Final_retorno(query:query), 
+              ) ;
+  }
+}
+/////////////////////////////////////////////////////////////////////////////////
+
+class Final_retorno extends StatelessWidget {
+
+  final String query;
+  const Final_retorno({    
+    Key? key,
+    required this.query
+    }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    final productosProvider = Provider.of<ProductosProvider>(context, listen: false);
+    productosProvider.busProduct(query);
+
+    return Container();
+  }
+}
+
+/* StreamBuilder(
+        stream: productosProvider.productos,
+        builder: ( _, AsyncSnapshot<List<Movie>> snapshot) {
+          
+          if( !snapshot.hasData ) return _emptyContainer();
+
+          final movies = snapshot.data!;
+
+          return ListView.builder(
+            itemCount: movies.length,
+            itemBuilder: ( _, int index ) => _MovieItem( movies[index])
+          );
+        },
+      ); */

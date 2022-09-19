@@ -44,7 +44,7 @@ class CardSwiper extends StatelessWidget {
 
 ////////////////////////////////////////////////////////                        
              Positioned(
-              top: 425,
+              top: size.height*0.55,
               left: 0,
               child: _productDetails(
                 posicion :value.counter,
