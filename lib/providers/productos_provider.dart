@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:admin_dashboard/helpers/debouncer.dart';
 import 'package:admin_dashboard/models/busqueda.dart';
+import 'package:admin_dashboard/models/http/productos_busqueda.dart';
 import 'package:admin_dashboard/models/http/productos_response.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/api/BolsosApi.dart';
@@ -94,13 +95,14 @@ void refreshProducto(Producto newProducto){
 
   }
 /////////////////////////////////////////////////////////////////////
- busProduct(String uidc) async{
+ Future busProduct(String uidc) async{
     producbs.clear();   
     final resp= await BolsosApi.httpGet('/buscar/productos/$uidc');
     final prodResp= Productobus.fromMap(resp);
-    print(prodResp);
+
+    producbs=[prodResp];
     notifyListeners();
-    return prodResp;  
+    return producbs;  
 
   }
 //////////////////////////////////////////////////////////////////////
@@ -119,8 +121,6 @@ Future newProducto( String name ) async {
     }
 
 }  
-
-
 /////////////////////SE ACTUALIZA CATEGORIA
   Future updateProducto( String name, String id ) async {
 
@@ -143,6 +143,27 @@ Future newProducto( String name ) async {
       throw 'Error al actualizar la categoria';
     }
   }
+
+
+
+void getSuggestionsByQuery( String searchTerm ) {
+
+    debouncer.value = '';
+    debouncer.onValue = ( value ) async {
+      // print('Tenemos valor a buscar: $value');
+      final results = await this.busProduct(value);
+
+      print(results);
+      this._suggestionsStreamController.add( results );
+    };
+
+    final timer = Timer.periodic(Duration(milliseconds: 300), ( _ ) { 
+      debouncer.value = searchTerm;
+    });
+
+    Future.delayed(Duration( milliseconds: 301)).then(( _ ) => timer.cancel());
+  }
+
 
 
 /* @override

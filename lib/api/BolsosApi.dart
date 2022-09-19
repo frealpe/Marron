@@ -32,6 +32,7 @@ class BolsosApi{
   static Future httpGet(String path) async{
     try{
       final resp= await dio.get('$baseUrlu$path');
+      print(resp);
       return resp.data;
     } on DioError catch(e){
       throw ('Error en el Get');

@@ -35,10 +35,10 @@ class ProductSearchDelegate extends SearchDelegate{
   @override
   Widget buildResults(BuildContext context) {
     // TODO: implement buildResults
-    throw UnimplementedError();
+    return Text('buildResults');
   }
 //////////////////////////////////////////////////////////////////////////////
-Widget _emptyContainer(){
+Widget emptyContainer(){
   return Container(
         child: Center(
           child: Icon(Icons.movie_creation_outlined,color: Colors.black38,size: 130,),
@@ -51,7 +51,7 @@ Widget _emptyContainer(){
   Widget buildSuggestions(BuildContext context) {
  
     if(query.isEmpty){
-      return _emptyContainer();
+      return emptyContainer();
     }
 
    return  Busqueda(query:query);
@@ -79,7 +79,6 @@ class Busqueda extends StatelessWidget {
   }
 }
 /////////////////////////////////////////////////////////////////////////////////
-
 class Final_retorno extends StatelessWidget {
 
   final String query;
@@ -97,4 +96,4 @@ class Final_retorno extends StatelessWidget {
     return Container();
   }
 }
-
+//////////////////////////////////////////////////////////////////////////////////
